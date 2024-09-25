@@ -149,6 +149,8 @@
         //(indexer i spillerBrikker-arrayen)
         //som utgjør vinnerkombinasjoner. Disse lagrer vi i en array med 2 nivåer 
         //(en array, som inneholder nye arrayer med vinnerkombinasjonene)
+
+         //utvidet brettet til å være 4x4, så vi trenger å oppdattere winnign combos tallrekkene/ utdivde kombinasjonene for å kompansere for de nye rutene.
         var winningCombos = [
             [0, 1, 2, 3],
             [4, 5, 6, 7],
@@ -169,7 +171,9 @@
         //trenger vi en oversikt over Spillbrettplasseringer. Disse kan vi lagre i en array, siden vi fra
         //starten av koden så at spillbrettet kan tenkes på som indexer i en array.
         //Vi lager klar en oversikt, en array, med 9 tomme plasseringer vi senere kan fylle med spillervalg.
-        var spillerBrikker = ["","","","","","","","","","","","","","","","",""];
+
+        //utvider spillebrikkene fordi vi har nå flere en det varorginalt på det mindre brettet.
+        var spillerBrikker = ["","","","","","","","","","","","","","","",""];
 
         //Videre trenger vi å registrere når en spiller klikker på en rute i spillbrettet.
         //Når en spiller klikker på en rute, skal vi få noe til å skje i koden, derfor kaller vi
@@ -204,6 +208,7 @@
         document.getElementById("celle8").addEventListener("click", function() {
             spill(8);
         });
+        //lagt inn eventlistner for de nye cellene/rutene.
         document.getElementById("celle9").addEventListener("click", function() {
             spill(9);
         });
@@ -241,6 +246,7 @@
                 var cellSpace = document.getElementById("celle"+celle).innerHTML;
                 
                 //Hvis den er ledig...
+
                 //Jeg fikset på ifen med å fjerne de to extra f ene på den. Fordi ellers ville den ikke ha funket
                 if(cellSpace === "") {
                     //...sjekk hvilken spiller sin tur det er, og plasser riktig symbol på spillerbrettet
@@ -277,6 +283,7 @@
                 //Når spillerens tur er ferdig, er det neste spillers tur.
                 //Det viser vi ved å sette variabelen "player" til 2 hvis den var 1 denne turen, eller hvis den var 2, sett tilbake til 1.
                 //På samme måte må spillersymbolet veksles mellom X og O.
+
                 //rundenVunnet brukes for å unngå at player tallet blir byttet, vis en spiller vinner. Fordi sjekkvinner bruker nå settimeout så denne koden hadde ellers kjørt når den ikke skulle.
                 if(rundenVunnet !== true) {
                     if (player === 1) {
@@ -294,6 +301,7 @@
             //Hvis spillstatus er false, avslutter vi funksjonen uten å utføre noen handlinger.
             } else {
                 //fikset kommentaren sånnn at det ble faktisk en kommentar me og adde en til dash.
+
                 //Så returnerer vi spillet
                 return;
             }
@@ -304,25 +312,31 @@
             //Vi må sjekke etter vinner for hver brikke som plasseres på brettet.
             // Dette gjør vi ved å gå gjennom alle vinnerkombinasjonene, og
             //sjekke om brikkene på spillbrettet er like ved indexene til vinnerkombinasjonene:
-            for(var combination = 0; combination <= 7; combination++) {
+            for(var combination = 0; combination <= 9; combination++) {
                 var vinnerKomboPlass1 = winningCombos[combination][0]; //Henter ut plassering av vinnerkombinasjonens rad 1, eksempel winningCombos[0][0] første runde, som inneholder verdien 0.
                 var vinnerKomboPlass2 = winningCombos[combination][1];
                 var vinnerKomboPlass3 = winningCombos[combination][2]
+                //laget min egen variabel for den fjerde brikken sin plass.
                 var vinnerKomboPlass4 = winningCombos[combination][3]
 
                 var brikke1 = spillerBrikker[vinnerKomboPlass1]; //Henter ut verdien (spillmerket) på indexen til første vinnerkombinasjonsplass fra spillerBrikker, eksempel spillerBrikker[0] første runde.
                 var brikke2 = spillerBrikker[vinnerKomboPlass2];
                 var brikke3 = spillerBrikker[vinnerKomboPlass3];
+                //lager hvilken brikke som er på den fjerde plassen
                 var brikke4 = spillerBrikker[vinnerKomboPlass4];
 
                 //Hvis en av plassene i vinnerkombinasjonen er tom, er det ikke vunnet noe.
                 //Da kan løkken bare fortsette å kjøre.
+
+                //la til brikke 4 siden vi må undersøke den
                 if(brikke1 === "" || brikke2 === "" || brikke3 === "" || brikke4 === "") {
                     continue;
                 }
 
                 //Hvis brikke1 er det samme som brikke 2, og brikke 2 er det samme som
-                //brikke3, er alle like, og vi har en vinnerkombinasjon. Da 
+                //brikke3, er alle like, og vi har en vinnerkombinasjon. Da
+                
+                //skrev om denne logikken og nå undersøker den istdet om brikke 1,2,3 og 4 er alle like x eller o. Fordi dette fgøltes mer ryddig.
                 if((brikke1 === "X" && brikke2 === "X" && brikke3 === "X" && brikke4 === "X") || (brikke1 === "O" && brikke2 === "O" && brikke3 === "O" && brikke4 === "O")) {
                     rundenVunnet = true;
                     break;
@@ -331,7 +345,7 @@
 
             //Hvis runden er vunnet, skal vi gjøre noen handlinger:
             if(rundenVunnet === true) {
-
+            //settimeout blir kalt med denne funksjonen og sover i tusen sekunder får den våkner og kjører koden sin.
                 setTimeout(function() {
 
                 //Skriv ut hvilken spiller som har vunnet
@@ -339,8 +353,10 @@
                 //Gjør restart spill-knappen synlig
                 document.getElementById("newgame").style.display = "block";
                 //Sett spillstatus til false, slik at ingen spillere får plassere
+
                 //flere brikker på brettet - dette løses med sjekken i funksjonen spill()
                 spillStatus = false;
+                //linje 360 til 458: la til funksjonalitet for å gjøre så at brikkne til vinneren lyste opp når spillet var ferdig.
                 document.getElementById("playerturn").style.backgroundColor="#FFD700"
                 if(player === 1 && spillerBrikker[0]==="X"){
                     document.getElementById("celle0").style.color="#FFD700"
@@ -478,11 +494,12 @@
            document.getElementById("celle13").style.color="#fff"
            document.getElementById("celle14").style.color="#fff"
            document.getElementById("celle15").style.color="#fff"
-           
+           //set til false siden det er ny runde
            rundenVunnet=false
 
            //øker antall spillte spill telllinger og info om tellingene på spillet
            gamecount++
+           //fortell om hvor mange rundersom har blitt spiltt
            document.getElementById("gamecount").innerHTML = "counting of game rounds "+gamecount 
 
             // 1)
