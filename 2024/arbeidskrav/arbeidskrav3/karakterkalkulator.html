@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--husk å slette unødvendig kommenatrer til deg selv før innlevering^-^ u can do it gurrrlXD--> <!---->
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karakterkalkulator</title>
+    <!--dette er mine fonter til siden tatt fra google fonts husk og legge til leneken til dette
+    husk også at du du akn legge inn endringer på fonten med å legge inn fontene i css for å endre tykkelse og farger osv.. står på google fonts koden til de forskjellige fontene du har brukt-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <style>
+        body{
+            background-color: #f896f3;
+            font-family: "roboto", "open sans", "fredoka", sans-serif;
+        }
+    </style>
+</head>
+
+<!--husk og skrive kommentarer om din kode!!-->
+<body>
+    <!---->
+    <p>oppgave felt 1 <input id="felt1"></p>
+    <p>oppgave felt 2 <input id="felt2"></p>
+    <!---->
+    <button onclick="beregn_karakter()">Beregn Karakter</button>
+    <p id="svar"></p>
+    <script>
+        //
+        function beregn_karakter() {
+            //
+            const PoengOppgave1=document.getElementById("felt1").value
+            const PoengOppgave2=document.getElementById("felt2").value
+            //
+            if(PoengOppgave1===""|| PoengOppgave2===""){return}
+            //
+            const MaksimaltPoengOppgave1=10
+            const MaksimaltPoengOppgave2=12
+          //her er formelen vi fikk fra oppgaven og som vi skal bruke i denne koden her for å regne karakter med ulk vekt på oppgaver
+            const value= (0.3 * (PoengOppgave1 / MaksimaltPoengOppgave1 * 100)) + (0.7 * (PoengOppgave2 / MaksimaltPoengOppgave2 * 100))
+            //
+            let grade
+            let i = 0
+            //
+            while (i < grades.length) {
+                //
+                if (value >= grades[i].treshold) {
+                    grade = grades[i].grade
+                }
+                i++
+            }
+            //
+            document.getElementById("svar").innerHTML="din karakter er " + grade
+        }
+
+        //den andre er en array vi kan bruke og kopiere inn i koden
+        const grades = [
+            {grade: "F", treshold: 0},
+            {grade: "E", treshold: 25},
+            {grade: "D", treshold: 44},
+            {grade: "C", treshold: 68},
+            {grade: "B", treshold: 88},
+            {grade: "A", treshold: 100},
+                                        ]
+
+    </script>
+</body>
+
+
+</html>
+
+<!--//lenker til de forksjellige nettsider jeg brukte
+//til koden/ icons/ fonts
+//https://fontawesome.com/
+// her mitt eget kit det free alle kunne laste ned https://fontawesome.com/kits
+//https://fonts.google.com/
+
+//hjelpe middel nettisder jeg brukte-->
