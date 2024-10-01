@@ -29,41 +29,42 @@
 
 <!--husk og skrive kommentarer om din kode!!-->
 <body>
-    <!---->
+    <!--Jeg brukte p tagen for å dele opp i to felter og kalte de felt1 og felt2 for å gjøre det lett for meg for meg selv-->
     <p>oppgave felt 1 <input id="felt1"></p>
     <p>oppgave felt 2 <input id="felt2"></p>
-    <!---->
+    <!--jeg brukte også button on click siddn denne knappen vil ikke gjøre noe før du trykker på den-->
     <button onclick="beregn_karakter()">Beregn Karakter</button>
     <p id="svar"></p>
     <script>
-        //
+        //Jeg bruker en funtion der jeg ber den om å lese det som står i felt1 og felt 2
         function beregn_karakter() {
-            //
+            //jeg puttet to constant fordi det er to poeng oppagver fast og det lir puttet in en vaulue der fra enten 0 til 10 eller 12 spørs på felt 1 eller 2
             const PoengOppgave1=document.getElementById("felt1").value
             const PoengOppgave2=document.getElementById("felt2").value
-            //
+            //jeg brukte en if her fordi vis feltene er tomme så skal ingenting skje uansett hvor mange ganger du trykker på kanppen
             if(PoengOppgave1===""|| PoengOppgave2===""){return}
-            //
+            //jeg bruker const med en maksimalt poeng oppgave 1 og 2 fordi oppg 1 kan maks ha 10 poeng og oppg 2 kan maks ha 12 poeng
             const MaksimaltPoengOppgave1=10
             const MaksimaltPoengOppgave2=12
           //her er formelen vi fikk fra oppgaven og som vi skal bruke i denne koden her for å regne karakter med ulk vekt på oppgaver
             const value= (0.3 * (PoengOppgave1 / MaksimaltPoengOppgave1 * 100)) + (0.7 * (PoengOppgave2 / MaksimaltPoengOppgave2 * 100))
-            //
+            //brukte en let for å vise hva slags grade du får
             let grade
             let i = 0
-            //
+            //her ha rjeg brukt treshold i while for å vise at vis poeng summen her høyere en f.eks null/ tresholdet så får du da tilsvarende grade over F som er E osv.
             while (i < grades.length) {
-                //
+                //her har jeg brukt at vaule er hvert mer en treshold grade F/0.her ogsp bruker den i for å minn epå at 0 er det lavesete som går
                 if (value >= grades[i].treshold) {
                     grade = grades[i].grade
                 }
                 i++
             }
-            //
+            //her bruker jeg get element by id for å få svaret på hav dine poeng er som en karkater pluss for å få teksten synlig først etter du har 
+            //trykket på knappen og da + grade tagen som viser da teksten " din krakter er 6" f. eks. Fordi grade er jo karkaterene du kan få
             document.getElementById("svar").innerHTML="din karakter er " + grade
         }
 
-        //den andre er en array vi kan bruke og kopiere inn i koden
+        //den andre er en array vi kan bruke og kopiere inn i koden. Som viser de forskjellioge karkaterne du kan få via hva slags poeng du ahr totlat av oppg 1 og 2
         const grades = [
             {grade: "F", treshold: 0},
             {grade: "E", treshold: 25},
