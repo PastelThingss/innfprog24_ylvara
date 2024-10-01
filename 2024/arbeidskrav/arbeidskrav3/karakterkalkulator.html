@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--husk å slette unødvendig kommenatrer til deg selv før innlevering^-^ u can do it gurrrlXD--> <!--DET ER VIKTIG YLVA OG SLETTE DISSE FØR LEVERING!!!-->
 <html lang="en">
-
+<!--husk at i css class=. som er punktum og Id=#-->
 
 <head>
     <meta charset="UTF-8">
@@ -18,63 +18,85 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
+<!--skal jeg putte en div innenfor på body? for å lage en grid conatiner? like= div id="grid-container. husk krokodillene"-->
     <style>
+        /*HUSK Å KOMENTERE CSSEN OGSÅ!!*/
         body{
-            background-color: #f896f3;
-            font-family: "roboto", "open sans", "fredoka", sans-serif;
+            background-color:lightgray;
+            font-family: "open sans", "roboto", "fredoka", sans-serif;
+        }
+
+        body>* {
+            box-sizing: border-box;
+            padding: 0.5rem;
+            margin: 0.5rem;
+        }
+
+        .p{
+            background-color: blueviolet;
+        }
+
+        #btn-bk{
+            background-color: aqua;
+        }
+
+        .svar-dke{
+            background-color: red;
         }
     </style>
 </head>
-
+<!--guurrlll vil du ha med en header or nah? likosm vil du ha overskrift som heter karakter kalkulator-->
 <!--husk og skrive kommentarer om din kode!!-->
 <body>
-    <!--Jeg brukte p tagen for å dele opp i to felter og kalte de felt1 og felt2 for å gjøre det lett for meg for meg selv-->
-    <p>oppgave felt 1 <input id="felt1"></p>
-    <p>oppgave felt 2 <input id="felt2"></p>
-    <!--jeg brukte også button on click siddn denne knappen vil ikke gjøre noe før du trykker på den-->
-    <button onclick="beregn_karakter()">Beregn Karakter</button>
-    <p id="svar"></p>
-    <script>
-        //Jeg bruker en funtion der jeg ber den om å lese det som står i felt1 og felt 2
-        function beregn_karakter() {
-            //jeg puttet to constant fordi det er to poeng oppagver fast og det lir puttet in en vaulue der fra enten 0 til 10 eller 12 spørs på felt 1 eller 2
-            const PoengOppgave1=document.getElementById("felt1").value
-            const PoengOppgave2=document.getElementById("felt2").value
-            //jeg brukte en if her fordi vis feltene er tomme så skal ingenting skje uansett hvor mange ganger du trykker på kanppen
-            if(PoengOppgave1===""|| PoengOppgave2===""){return}
-            //jeg bruker const med en maksimalt poeng oppgave 1 og 2 fordi oppg 1 kan maks ha 10 poeng og oppg 2 kan maks ha 12 poeng
-            const MaksimaltPoengOppgave1=10
-            const MaksimaltPoengOppgave2=12
-          //her er formelen vi fikk fra oppgaven og som vi skal bruke i denne koden her for å regne karakter med ulk vekt på oppgaver
-            const value= (0.3 * (PoengOppgave1 / MaksimaltPoengOppgave1 * 100)) + (0.7 * (PoengOppgave2 / MaksimaltPoengOppgave2 * 100))
-            //brukte en let for å vise hva slags grade du får
-            let grade
-            let i = 0
-            //her ha rjeg brukt treshold i while for å vise at vis poeng summen her høyere en f.eks null/ tresholdet så får du da tilsvarende grade over F som er E osv.
-            while (i < grades.length) {
-                //her har jeg brukt at vaule er hvert mer en treshold grade F/0.her ogsp bruker den i for å minn epå at 0 er det lavesete som går
-                if (value >= grades[i].treshold) {
-                    grade = grades[i].grade
+    <header>
+        <h1>Karakterkalkulator</h1>
+    </header>
+        <!--Jeg brukte p tagen for å dele opp i to felter og kalte de felt1 og felt2 for å gjøre det lett for meg for meg selv-->
+        <p class="p">oppgave felt 1 <input id="felt1"></p>
+        <p class="p">oppgave felt 2 <input id="felt2"></p>
+        <!--jeg brukte også button on click siddn denne knappen vil ikke gjøre noe før du trykker på den-->
+        <button id="btn-bk" onclick="beregn_karakter()">Beregn Karakter</button>
+        <p class="svar-dke" id="svar"></p>
+        <script>
+            //Jeg bruker en funtion der jeg ber den om å lese det som står i felt1 og felt 2
+            function beregn_karakter() {
+                //jeg puttet to constant fordi det er to poeng oppagver fast og det lir puttet in en vaulue der fra enten 0 til 10 eller 12 spørs på felt 1 eller 2
+                const PoengOppgave1=document.getElementById("felt1").value
+                const PoengOppgave2=document.getElementById("felt2").value
+                //jeg brukte en if her fordi vis feltene er tomme så skal ingenting skje uansett hvor mange ganger du trykker på kanppen
+                if(PoengOppgave1===""|| PoengOppgave2===""){return}
+                //jeg bruker const med en maksimalt poeng oppgave 1 og 2 fordi oppg 1 kan maks ha 10 poeng og oppg 2 kan maks ha 12 poeng
+                const MaksimaltPoengOppgave1=10
+                const MaksimaltPoengOppgave2=12
+            //her er formelen vi fikk fra oppgaven og som vi skal bruke i denne koden her for å regne karakter med ulk vekt på oppgaver
+                const value= (0.3 * (PoengOppgave1 / MaksimaltPoengOppgave1 * 100)) + (0.7 * (PoengOppgave2 / MaksimaltPoengOppgave2 * 100))
+                //brukte en let for å vise hva slags grade du får
+                let grade
+                let i = 0
+                //her ha rjeg brukt treshold i while for å vise at vis poeng summen her høyere en f.eks null/ tresholdet så får du da tilsvarende grade over F som er E osv.
+                while (i < grades.length) {
+                    //her har jeg brukt at vaule er hvert mer en treshold grade F/0.her ogsp bruker den i for å minn epå at 0 er det lavesete som går
+                    if (value >= grades[i].treshold) {
+                        grade = grades[i].grade
+                    }
+                    i++
                 }
-                i++
+                //her bruker jeg get element by id for å få svaret på hav dine poeng er som en karkater pluss for å få teksten synlig først etter du har 
+                //trykket på knappen og da + grade tagen som viser da teksten " din krakter er 6" f. eks. Fordi grade er jo karkaterene du kan få
+                document.getElementById("svar").innerHTML="din karakter er " + grade
             }
-            //her bruker jeg get element by id for å få svaret på hav dine poeng er som en karkater pluss for å få teksten synlig først etter du har 
-            //trykket på knappen og da + grade tagen som viser da teksten " din krakter er 6" f. eks. Fordi grade er jo karkaterene du kan få
-            document.getElementById("svar").innerHTML="din karakter er " + grade
-        }
 
-        //den andre er en array vi kan bruke og kopiere inn i koden. Som viser de forskjellioge karkaterne du kan få via hva slags poeng du ahr totlat av oppg 1 og 2
-        const grades = [
-            {grade: "F", treshold: 0},
-            {grade: "E", treshold: 25},
-            {grade: "D", treshold: 44},
-            {grade: "C", treshold: 68},
-            {grade: "B", treshold: 88},
-            {grade: "A", treshold: 100},
-                                        ]
+            //den andre er en array vi kan bruke og kopiere inn i koden. Som viser de forskjellioge karkaterne du kan få via hva slags poeng du ahr totlat av oppg 1 og 2
+            const grades = [
+                {grade: "F", treshold: 0},
+                {grade: "E", treshold: 25},
+                {grade: "D", treshold: 44},
+                {grade: "C", treshold: 68},
+                {grade: "B", treshold: 88},
+                {grade: "A", treshold: 100},
+                                            ]
 
-    </script>
+        </script>
 </body>
 
 
@@ -92,7 +114,5 @@
 <!--https://www.w3schools.com/js/js_variables.asp--><!--brukte denne til å huske og minne meg på de forksjellige variablene java script har-->
 <!--https://lms.webtricks.blog/kurs/innforing-i-programmering/introduksjon-til-programmering--><!--brukte også webtricks innføring i programmering da det er masse god info der også-->
 <!--brukte bare introduksjons siden for å slippe og legge inn alle webtricks sidene jeg brukte da jeg brukte mange av de.-->
-<!--https://css-tricks.com/snippets/css/a-guide-to-flexbox/--><!--veldig glad i denne nettsiden da den har god info og gode bilder som minner meg på css regler og hvordan bruke det riktig-->
-<!--Jeg lærer godt med å bare lese og visuelt og prøve selv. og denne har tydlige bilder og kort og enkelt forklart med ikke alt for mye teskt så lett for m eg og huske og skjønne hva de vil og sier-->
 <!--jeg brukte også boken den programmering i javascript fra tom heine nätt og jostein nordenegen fra 2016. jeg vet den er utdatert men mange regler er det samme og fin å se på eksemplene de kommer med-->
 <!--lett og finne det du leter av svar eller eks, fordi innholdsfortegnelsen er ryddig og oversiktlig og lett og lese-->
