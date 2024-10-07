@@ -24,39 +24,62 @@
         body{
             background-color:lightgray;
             font-family: "open sans", "roboto", "fredoka", sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         body>* {
+
             box-sizing: border-box;
-            padding: 0.5rem;
-            margin: 0.5rem;
+        }
+
+        /*#header{
+           background-color: brown;
         }
 
         .p{
             background-color: blueviolet;
+            padding: 0.5rem;
+            margin: 0.5rem;
+            border-style: solid;
+        }*/
+
+        .boxy{
+            border-style: solid;
+            background-color: rgb(255, 190, 233);
+
         }
 
         #btn-bk{
+            /*initial:all;*/
+            all: unset;
             background-color: aqua;
+            margin: 0.5rem;
+            
         }
 
-        .svar-dke{
-            background-color: red;
-        }
+       /* .svar-dke{
+            
+        }*/
     </style>
 </head>
 <!--guurrlll vil du ha med en header or nah? likosm vil du ha overskrift som heter karakter kalkulator-->
 <!--husk og skrive kommentarer om din kode!!-->
 <body>
-    <header>
+    <header id="header">
         <h1>Karakterkalkulator</h1>
     </header>
         <!--Jeg brukte p tagen for å dele opp i to felter og kalte de felt1 og felt2 for å gjøre det lett for meg for meg selv-->
-        <p class="p">oppgave felt 1 <input id="felt1"></p>
-        <p class="p">oppgave felt 2 <input id="felt2"></p>
+        <section class="boxy">
+            <p class="p">oppgave felt 1 <input id="felt1"></p>
+            <p class="p">oppgave felt 2 <input id="felt2"></p>
+            <b><p class="svar-dke" id="svar">Hva blir din karakter?</p></b>
+        </section>
         <!--jeg brukte også button on click siddn denne knappen vil ikke gjøre noe før du trykker på den-->
         <button id="btn-bk" onclick="beregn_karakter()">Beregn Karakter</button>
-        <p class="svar-dke" id="svar"></p>
+        
         <script>
             //Jeg bruker en funtion der jeg ber den om å lese det som står i felt1 og felt 2
             function beregn_karakter() {
