@@ -28,30 +28,17 @@
         }
 /*den andre body er for bare box sizing og den oven for er kun for flex og fontene på siden og generelt hvordan ting ser ut og legger på siden*/
         * {
-
             box-sizing: border-box;
         }
 /*Denne ble laget for border rundt karakterkalkulatoren sånn at den fikk farge på sin bakgrunn og en solid linje rundt seg*/
         .boxy{
             border-style: solid;
-            background-color: rgb(255, 208, 208);
+            background-color: rgb(255, 208, 239);
            padding: 0.5rem;
         }
-/*Denne ble laget sånn at button fikk den fargen jeg ville ha og ugtseende på button ble lignende en button*/
-        .btn-bk{
-            all: unset;
-            background-color: rgb(72, 255, 0);
-            margin: 0.5rem;
-            border-style: solid;
-            padding: 0.5rem;
-        }
-
-        /*.btn-bk:hover{
-            background-color: rgb(255, 208, 208);
-            color:white;
-        }*/
-
+/*Jeg endret button til en button fra nettet da jeg hadde lyst på en fin button og syntes den jeg fant var fin og kopierte den i koden min. Men jeg endret på farger da jeg syntes ikke fargen passet til ideen min og farge kompinasjonen jeg likte*/
         .pushable{
+            margin-top: 1rem;
             position: relative;
             background: transparent;
             padding: 0px;
@@ -63,20 +50,6 @@
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         }
       
-        .shadow{
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background: hsl(226, 25%, 69%);
-            border-radius: 8px;
-            filter: blur(2px);
-            will-change: transform;
-            transform: translateY(2px);
-            transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
-        }
-
         .edge{
             position: absolute;
             top: 0;
@@ -86,10 +59,10 @@
             border-radius: 8px;
             background: linear-gradient(
                 to right,
-                hsl(248, 39%, 39%) 0%,
-                hsl(248, 39%, 49%) 8%,
-                hsl(248, 39%, 39%) 92%,
-                hsl(248, 39%, 29%) 100%
+                hsl(316, 39%, 39%) 0%,
+                hsl(305, 39%, 49%) 8%,
+                hsl(306, 39%, 39%) 92%,
+                hsl(312, 39%, 29%) 100%
                 )
             }   
 
@@ -97,9 +70,9 @@
             display: block;
             position: relative;
             border-radius: 8px;
-            background: hsl(248, 53%, 58%);
+            background: hsl(313, 53%, 58%);
             padding: 16px 32px;
-            color: white;
+            color: rgb(0, 0, 0);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1.5px;
@@ -135,9 +108,11 @@
         .pushable:focus:not(:focus-visible) {
             outline: none;
         }
+
     </style>
 
 </head>
+
 <body>
     <header id="header">
         <h1>Karakterkalkulator</h1>
@@ -148,8 +123,12 @@
             <p class="p">oppgave felt 2 <input id="felt2"></p>
             <b><p class="svar-dke" id="svar">Hva blir din karakter?</p></b>
         </section>
-        <!--jeg brukte også button on click siden denne knappen vil ikke gjøre noe før du trykker på den. Fordi når du trykker på den så kjører funksjonen beregn karakter-->
-        <button class="btn-bk pushable shadow edge front" onclick="beregn_karakter()">Beregn Karakter</button>
+        <!--jeg brukte også button siden denne knappen vil ikke gjøre noe før du trykker på den. Fordi når du trykker på den så kjører funksjonen beregn karakter-->
+        <button class="pushable">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front" onclick="beregn_karakter()"> Beregn Karakter </span>
+        </button>
         
         <script>
             //Jeg bruker en funtion der jeg ber den om å lese det som står i felt 1 og felt 2
@@ -208,3 +187,10 @@
 <!--brukte bare introduksjons siden for å slippe og legge inn alle webtricks sidene jeg brukte da jeg brukte mange av de.-->
 <!--jeg brukte også boken den programmering i javascript fra tom heine nätt og jostein nordenegen fra 2016. jeg vet den er utdatert men mange regler er det samme og fin å se på eksemplene de kommer med-->
 <!--lett og finne det du leter av svar eller eks, fordi innholdsfortegnelsen er ryddig og oversiktlig og lett og lese-->
+<!--https://www.w3schools.com/tags/tag_button.asp-->
+<!--https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_hover-->
+<!--https://www.geeksforgeeks.org/how-to-create-a-clickable-button-in-html/-->
+<!--https://www.freecodecamp.org/news/html-button-onclick-javascript-click-event-tutorial/-->
+<!--https://stackoverflow.com/questions/65560118/make-buttons-in-javascript-->
+<!--https://www.altcademy.com/blog/how-to-create-a-button-in-javascript/-->
+<!--https://uiverse.io/PriyanshuGupta28/brave-mole-100-->
