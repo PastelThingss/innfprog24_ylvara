@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<!--husk å slette unødvendig kommenatrer til deg selv før innlevering^-^ u can do it gurrrlXD--> <!--DET ER VIKTIG YLVA OG SLETTE DISSE FØR LEVERING!!!-->
 <html lang="en">
-<!--husk at i css class=. som er punktum og Id=#-->
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karakterkalkulator</title>
-    <!--dette er mine fonter til siden tatt fra google fonts husk og legge til leneken til dette
-    husk også at du du akn legge inn endringer på fonten med å legge inn fontene i css for å endre tykkelse og farger osv.. står på google fonts koden til de forskjellige fontene du har brukt-->
+    <!--dette er fontene jeg har valgt og disse er fra googlefonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -18,10 +15,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-<!--skal jeg putte en div innenfor på body? for å lage en grid conatiner? like= div id="grid-container. husk krokodillene"-->
+
     <style>
-        /*HUSK Å KOMENTERE CSSEN OGSÅ!!*/
-        /*FÅ FERDIG DIN CSSEN, DET MANGLER ER OG GJØRE DET PENERE OG RYDDIG*/
+        /*Jeg laget en body fordi den vil da påvirke alt innen for body*/
         body{
             background-color:lightgray;
             font-family: "open sans", "roboto", "fredoka", sans-serif;
@@ -30,52 +26,135 @@
             align-items: center;
             justify-content: center;
         }
-
-        body>* {
+/*den andre body er for bare box sizing og den oven for er kun for flex og fontene på siden og generelt hvordan ting ser ut og legger på siden*/
+        * {
 
             box-sizing: border-box;
         }
-
+/*Denne ble laget for border rundt karakterkalkulatoren sånn at den fikk farge på sin bakgrunn og en solid linje rundt seg*/
         .boxy{
             border-style: solid;
             background-color: rgb(255, 208, 208);
            padding: 0.5rem;
         }
-
-        #btn-bk{
-            /*initial:all;*/
+/*Denne ble laget sånn at button fikk den fargen jeg ville ha og ugtseende på button ble lignende en button*/
+        .btn-bk{
             all: unset;
             background-color: rgb(72, 255, 0);
             margin: 0.5rem;
             border-style: solid;
             padding: 0.5rem;
-            box-shadow: 0.5rem;
         }
 
-       /* .svar-dke{
-            
+        /*.btn-bk:hover{
+            background-color: rgb(255, 208, 208);
+            color:white;
         }*/
+
+        .pushable{
+            position: relative;
+            background: transparent;
+            padding: 0px;
+            border: none;
+            cursor: pointer;
+            outline-offset: 4px;
+            outline-color: deeppink;
+            transition: filter 250ms;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+      
+        .shadow{
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: hsl(226, 25%, 69%);
+            border-radius: 8px;
+            filter: blur(2px);
+            will-change: transform;
+            transform: translateY(2px);
+            transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+        }
+
+        .edge{
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            border-radius: 8px;
+            background: linear-gradient(
+                to right,
+                hsl(248, 39%, 39%) 0%,
+                hsl(248, 39%, 49%) 8%,
+                hsl(248, 39%, 39%) 92%,
+                hsl(248, 39%, 29%) 100%
+                )
+            }   
+
+        .front{
+            display: block;
+            position: relative;
+            border-radius: 8px;
+            background: hsl(248, 53%, 58%);
+            padding: 16px 32px;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 1rem;
+            transform: translateY(-4px);
+            transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+         }
+
+         .pushable:hover {
+                filter: brightness(110%);
+        }
+
+            .pushable:hover .front {
+                transform: translateY(-6px);
+                transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+        }
+
+        .pushable:active .front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+        }
+
+    .pushable:hover .shadow {
+        transform: translateY(4px);
+        transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+    }
+
+    .pushable:active .shadow {
+        transform: translateY(1px);
+        transition: transform 34ms;
+    }
+
+        .pushable:focus:not(:focus-visible) {
+            outline: none;
+        }
     </style>
+
 </head>
-<!--guurrlll vil du ha med en header or nah? likosm vil du ha overskrift som heter karakter kalkulator-->
-<!--husk og skrive kommentarer om din kode!!-->
 <body>
     <header id="header">
         <h1>Karakterkalkulator</h1>
     </header>
-        <!--Jeg brukte p tagen for å dele opp i to felter og kalte de felt1 og felt2 for å gjøre det lett for meg for meg selv-->
+        <!--Jeg brukte p tagen for å dele opp i to felter og kalte de felt 1 og felt 2 for å gjøre det lett for meg for meg selv-->
         <section class="boxy">
             <p class="p">oppgave felt 1 <input id="felt1"></p>
             <p class="p">oppgave felt 2 <input id="felt2"></p>
             <b><p class="svar-dke" id="svar">Hva blir din karakter?</p></b>
         </section>
-        <!--jeg brukte også button on click siddn denne knappen vil ikke gjøre noe før du trykker på den-->
-        <button id="btn-bk" onclick="beregn_karakter()">Beregn Karakter</button>
+        <!--jeg brukte også button on click siden denne knappen vil ikke gjøre noe før du trykker på den. Fordi når du trykker på den så kjører funksjonen beregn karakter-->
+        <button class="btn-bk pushable shadow edge front" onclick="beregn_karakter()">Beregn Karakter</button>
         
         <script>
-            //Jeg bruker en funtion der jeg ber den om å lese det som står i felt1 og felt 2
+            //Jeg bruker en funtion der jeg ber den om å lese det som står i felt 1 og felt 2
             function beregn_karakter() {
-                //jeg puttet to constant fordi det er to poeng oppagver fast og det lir puttet in en vaulue der fra enten 0 til 10 eller 12 spørs på felt 1 eller 2
+                //jeg puttet to constant fordi det er to poeng oppgaver fast og det blir puttet in en vaulue der fra enten 0 til 10 eller 12 spørs på felt 1 eller 2
                 const PoengOppgave1=document.getElementById("felt1").value
                 const PoengOppgave2=document.getElementById("felt2").value
                 //jeg brukte en if her fordi vis feltene er tomme så skal ingenting skje uansett hvor mange ganger du trykker på kanppen
@@ -83,25 +162,24 @@
                 //jeg bruker const med en maksimalt poeng oppgave 1 og 2 fordi oppg 1 kan maks ha 10 poeng og oppg 2 kan maks ha 12 poeng
                 const MaksimaltPoengOppgave1=10
                 const MaksimaltPoengOppgave2=12
-            //her er formelen vi fikk fra oppgaven og som vi skal bruke i denne koden her for å regne karakter med ulk vekt på oppgaver
+            //her er formelen vi fikk fra oppgaven og som vi skal bruke i denne koden her for å regne karakter med ulik vekt på oppgaver
                 const value= (0.3 * (PoengOppgave1 / MaksimaltPoengOppgave1 * 100)) + (0.7 * (PoengOppgave2 / MaksimaltPoengOppgave2 * 100))
-                //brukte en let for å vise hva slags grade du får
+                //brukte en let for å vise hva slags grade du får. Grade og i må kunne forrandres, som er hvorfor de er let.
                 let grade
                 let i = 0
-                //her ha rjeg brukt treshold i while for å vise at vis poeng summen her høyere en f.eks null/ tresholdet så får du da tilsvarende grade over F som er E osv.
+                //her har jeg brukt treshold i while for å vise at vis poeng summen her høyere en f.eks null/ treshold så får du da tilsvarende grade over F som er E osv.
                 while (i < grades.length) {
-                    //her har jeg brukt at vaule er hvert mer en treshold grade F/0.her ogsp bruker den i for å minn epå at 0 er det lavesete som går
+                    //her har jeg brukt at value er hvert mer en treshold grade F/0.her også bruker den i for å minne på at 0 er det lavesete som går
                     if (value >= grades[i].treshold) {
                         grade = grades[i].grade
                     }
                     i++
                 }
-                //her bruker jeg get element by id for å få svaret på hav dine poeng er som en karkater pluss for å få teksten synlig først etter du har 
-                //trykket på knappen og da + grade tagen som viser da teksten " din krakter er 6" f. eks. Fordi grade er jo karkaterene du kan få
+                //her bruker jeg get element by id for å få svaret på hva dine poeng er som en karakter pluss for å få teksten synlig først etter du har trykket på knappen, og da + grade tagen som viser da teksten " din karakter er 6" f. eks. Fordi grade er jo karakterene du kan få.
                 document.getElementById("svar").innerHTML="din karakter er " + grade
             }
 
-            //den andre er en array vi kan bruke og kopiere inn i koden. Som viser de forskjellioge karkaterne du kan få via hva slags poeng du ahr totlat av oppg 1 og 2
+            //den andre er en array vi kan bruke og kopiere inn i koden. Som viser de forskjellioge karkaterne du kan få via hva slags poeng du har totalt av oppg 1 og 2
             const grades = [
                 {grade: "F", treshold: 0},
                 {grade: "E", treshold: 25},
@@ -114,7 +192,6 @@
         </script>
 </body>
 
-
 </html>
 
 <!--//lenker til de forksjellige nettsider jeg brukte
@@ -123,7 +200,7 @@
 // her mitt eget kit det free alle kunne laste ned https://fontawesome.com/kits
 //https://fonts.google.com/
 
-//hjelpe middel nettisder jeg brukte--><!---->
+//hjelpe middel nettisder jeg brukte-->
 <!--https://www.w3schools.com/jsref/event_onclick.asp--><!--denne brukte jeg for å finne ut om knappen og få en fin knapp det samme som den du bruker i web-->
 <!--https://www.w3schools.com/js/js_functions.asp--><!--jeg brukte denne til å få til functions sånn som de skulle skrives-->
 <!--https://www.w3schools.com/js/js_variables.asp--><!--brukte denne til å huske og minne meg på de forksjellige variablene java script har-->
